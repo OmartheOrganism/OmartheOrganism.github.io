@@ -1,179 +1,1413 @@
-<!DOCTYPE HTML>
-<!--
-	TEMPLATE:
-	Read Only by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Omar Tariq</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- TODO: Replace with real content -->
+<title>Omar Tariq | Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   NES PALETTE + VARIABLES
+   ============================================================ */
+:root {
+  --bg:     #000000;
+  --text:   #FCFCFC;
+  --blue:   #0058F8;
+  --green:  #00A848;
+  --yellow: #F8D018;
+  --salmon: #FC7460;
+  --red:    #D82800;
+  --gray:   #A8A8A8;
+  --font-p: 'Press Start 2P', monospace;
+  --font-v: 'VT323', monospace;
+  --u: 8px;
+}
 
-		<!-- Header -->
-			<section id="header">
-				<header>
-					<span class="image avatar"><img src="images/icon2.jpeg" alt="" /></span>
-					<h1 id="logo"><a href="#">Omar Tariq</a></h1>
-				</header>
-				<nav id="nav">
-					<ul>
-						<li><a href="#one" class="active">Introduction</a></li>
-						<li><a href="#two">Things I Do</a></li>
-						<li><a href="#three">My Previous Work</a></li>
-						<li><a href="#four">Awards and Recognition</a></li>
-					</ul>
-				</nav>
-				<footer>
-					<ul class="icons">
-						<li><a href="https://twitter.com/OmarTariqBio" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="https://github.com/OmartheOrganism" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="mailto:omar.tariq@ubc.ca" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-				</footer>
-			</section>
+/* ============================================================
+   RESET + BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-v);
+  font-size: 22px;
+  line-height: 1.6;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect x='7' y='0' width='2' height='16' fill='%23FCFCFC'/%3E%3Crect x='0' y='7' width='16' height='2' fill='%23FCFCFC'/%3E%3Crect x='6' y='6' width='4' height='4' fill='%23F8D018'/%3E%3C/svg%3E") 8 8, crosshair;
+  overflow-x: hidden;
+}
+::selection { background: var(--yellow); color: #000; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: var(--blue); }
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+/* ============================================================
+   SCANLINE OVERLAY
+   ============================================================ */
+body::after {
+  content: '';
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.04) 3px,
+    rgba(0,0,0,0.04) 4px
+  );
+  pointer-events: none;
+  z-index: 10000;
+}
 
-				<!-- Main -->
-					<div id="main">
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+#progress-bar {
+  position: fixed; top: 0; left: 0;
+  height: 3px;
+  background: var(--green);
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px var(--green);
+}
 
-						<!-- One -->
-							<section id="one">
-								<div class="image main" data-position="center">
-									<img src="images/header3.png" alt="" />
-								</div>
-								<div class="container">
-									<header class="major">
-										<h3>Introduction</h3>
-										<p>I am a PhD student at the <a href="https://deboer.bme.ubc.ca/">de Boer Lab</a> currently working on the genomic regulation of cancer. Before starting grad school I worked as an undergraduate researcher in computational neurobiology at the University of Ottawa. When I'm not in the lab, you can find me on a soccer field, browsing the sci-fi/fantasy section at the library, or attempting to scale of the several mountains found near UBC.</p>
-									</header>
-									<p></p>
-								</div>
-							</section>
+/* ============================================================
+   NAV
+   ============================================================ */
+nav {
+  position: sticky; top: 0;
+  background: var(--bg);
+  border-bottom: 2px solid var(--blue);
+  padding: 0 calc(var(--u)*3);
+  height: calc(var(--u)*7);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  image-rendering: pixelated;
+}
+.nav-logo {
+  font-family: var(--font-p);
+  font-size: 10px;
+  color: var(--yellow);
+  letter-spacing: 2px;
+  animation: blink-badge 1s step-end infinite;
+  border: 2px solid var(--yellow);
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+@keyframes blink-badge {
+  0%,100%{box-shadow:0 0 0 2px var(--yellow);}
+  50%{box-shadow:none;}
+}
+.nav-links {
+  display: flex; gap: calc(var(--u)*2);
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-p);
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--text);
+  padding: 4px 6px;
+  transition: color 0.1s;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--yellow);
+}
+.nav-links a.active::before { content: '> '; }
+.nav-links a:hover { text-decoration: none; }
 
-						<!-- Two -->
-							<section id="two">
-								<div class="container">
-									<h3>Things I Do</h3>
-									<p>Here's a brief summary of some of my different skills and areas of expertise:</p>
-									<ul class="feature-icons">
-										<li class="icon solid fa-code">Background in Python, R & Java</li>
-										<li class="icon solid fa-cubes">Develop, train, & deploy machine learning models</li>
-										<li class="icon solid fa-dna">Molecular Biology & Cloning</li>
-										<li class="icon solid fa-chart-bar">Bioinformatics & Data Analysis</li>
-									</ul>
-								</div>
-							</section>
+/* ============================================================
+   SECTION DIVIDER
+   ============================================================ */
+.divider {
+  font-family: var(--font-v);
+  font-size: 20px;
+  color: var(--blue);
+  letter-spacing: 4px;
+  text-align: center;
+  padding: calc(var(--u)*2) 0;
+  overflow: hidden;
+  user-select: none;
+}
 
-						<!-- Three -->
-							<section id="three">
-								<div class="container">
-									<h3>Previous Work</h3>
-									<p>A brief summary of some of my previous research experience. Click on the thumbnails for more detail.</p>
-									<div class="features">
-										<article>
-											<a href="#" class="image"><img src="images/pic00.jpg" alt="" /></a>
-											<div class="inner">
-												<h4>Predicting Mutant p53 Binding</h4>
-												<p>My current research involves using high-throughput molecular biology and machine learning to understand how mutations in the TP53 gene impact the development of cancer.</p>
-											</div>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic05.png" alt="" /></a>
-											<div class="inner">
-												<h4>Designing a prototype for long term endotracheal intubation</h4>
-												<p>As part of UBC's <a href="https://www.bme.ubc.ca/graduate/prospective-students-2-2/graduate-programs-2/engineers-in-scrubs/">Engineers in Scrubs program</a> I worked with clinicians to design and test a prototype endotracheal tube to prevent ischemic lesions after long term intubation, a problem exacerbated by the COVID-19 pandemic.</p>
-											</div>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic02.png" alt="" /></a>
-											<div class="inner">
-												<h4>Automated Analysis of Neurobiological Images</h4>
-												<p>I tested multiple approaches in order to design an automated pipeline for the analysis of confocal microscopy images.</p>
-											</div>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic04.png" alt="" /></a>
-											<div class="inner">
-												<h4>In Silico Model of High Frequency Neuronal Discharge</h4>
-												<p>My very first resesarch project involved using an in silico model of a pacemaker neuron, found in weakly electrical fish, to study the impact of voltage preturbation on the precision of discharge by a neuronal oscilator.</p>
-											</div>
-										</article>
-									</div>
-								</div>
-							</section>
+/* ============================================================
+   SECTIONS GENERAL
+   ============================================================ */
+section {
+  padding: calc(var(--u)*6) calc(var(--u)*4);
+  max-width: 1100px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+section.visible { opacity: 1; transform: translateY(0); }
+.section-header {
+  font-family: var(--font-p);
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: var(--yellow);
+  margin-bottom: calc(var(--u)*4);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-header::before { content: '> '; color: var(--green); }
+.section-header::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, var(--blue), transparent);
+}
 
-						<!-- Four -->
-							<section id="four">
-								<div class="container">
-									<h3>Awards and Recognition</h3>
-									<table style="width:100%">
-										<tr>
-											<th>Decription</th>
-											<th>Granted By</th>
-											<th>Date</th>
-											<th>Details</th>
-										</tr>
-										<tr>
-											<td>SBME Symposium: Best Poster</td>
-											<td>UBC School of Biomedical Engineering</td>
-											<td>May 2022</td>
-											<td>People's choice award for the best poster at UBC's Annual School of Biomedical Engineering Symposium. I presented my ongoing doctoral research on p53 variants.</td>
-										</tr>
-										<tr>
-											<td>PharmaHacks 2022: 3rd Place Prize</td>
-											<td>PharmaHacks and Phyla</td>
-											<td>March 2022</td>
-											<td>3rd place in the Phyla Challenge. We used XGBoost to classify patients into healthy or various disease categories based on metagenomic data from their gut microbiome.</td>
-										</tr>
-										<tr>
-											<td>3 Minute Thesis Competition: 3rd Place Prize</td>
-											<td>UBC School of Biomedical Engineering</td>
-											<td>March 2021</td>
-											<td>I worked hard to condense my thesis into a concise 3 minute presentation for lay audiences, and impressed the judges to get awarded 3rd place.</td>
-										</tr>
-										<tr>
-											<td>Dean's List</td>
-											<td>University of Ottawa</td>
-											<td>January 2018 - April 2020</td>
-											<td>I maintained a cGPA of >8.0/10 for six consecutive semesters, receiving a scholarship for academic excellence each semester.</td>
-										</tr>
-										<tr>
-											<td>Undergraduate Research Opportunity Program Award</td>
-											<td>University of Ottawa</td>
-											<td>September 2018</td>
-											<td>I was awarded $1000 to fund my first research experience, which I did at the lab of <a href="https://mysite.science.uottawa.ca/jlewis/">Dr. John Lewis</a></td>
-										</tr>
-									</table>
-								</div>
-							</section>
-					</div>
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: calc(var(--u)*6);
+  align-items: start;
+}
+.sprite-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--u)*2);
+}
+#sprite-canvas {
+  image-rendering: pixelated;
+  animation: idle-bob 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px var(--blue));
+}
+@keyframes idle-bob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+.lab-decorations {
+  display: flex;
+  gap: calc(var(--u)*3);
+  margin-top: calc(var(--u)*2);
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.typewriter-box {
+  background: rgba(0,88,248,0.08);
+  border: 2px solid var(--blue);
+  border-left: 4px solid var(--yellow);
+  padding: calc(var(--u)*3);
+  font-family: var(--font-v);
+  font-size: 24px;
+  line-height: 1.8;
+  min-height: 200px;
+  position: relative;
+}
+#typewriter-text { white-space: pre-wrap; }
+.cursor {
+  display: inline-block;
+  color: var(--yellow);
+  animation: blink-cursor 0.7s step-end infinite;
+}
+@keyframes blink-cursor { 0%,100%{opacity:1;} 50%{opacity:0;} }
+.press-start {
+  font-family: var(--font-p);
+  font-size: 8px;
+  color: var(--salmon);
+  letter-spacing: 2px;
+  margin-top: calc(var(--u)*3);
+  animation: pulse-text 1.2s ease-in-out infinite;
+  display: none;
+}
+@keyframes pulse-text {
+  0%,100%{ opacity: 1; }
+  50%{ opacity: 0.2; }
+}
 
-				<!-- Footer -->
-					<section id="footer">
-						<div class="container">
-							<ul class="copyright">
-								<li>&copy; Untitled. All rights reserved.</li><li>HTML Template: <a href="http://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</section>
+/* ============================================================
+   LAB EQUIPMENT SVG STYLES
+   ============================================================ */
+.equipment-label {
+  font-family: var(--font-v);
+  font-size: 16px;
+  color: var(--gray);
+  text-align: center;
+  display: block;
+  margin-top: 4px;
+}
 
-			</div>
+/* ============================================================
+   RESEARCH SECTION
+   ============================================================ */
+.research-badges {
+  display: flex; gap: calc(var(--u)*2);
+  flex-wrap: wrap;
+  margin-bottom: calc(var(--u)*4);
+}
+.badge {
+  font-family: var(--font-p);
+  font-size: 8px;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  border: 2px solid currentColor;
+  animation: badge-flash 2s ease-in-out infinite;
+}
+.badge-1 { color: var(--yellow); }
+.badge-2 { color: var(--green); animation-delay: 0.6s; }
+.badge-3 { color: var(--salmon); animation-delay: 1.2s; }
+@keyframes badge-flash {
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%{ opacity:0.7; transform:scale(1.04); }
+}
+.cartridge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: calc(var(--u)*3);
+}
+.cartridge {
+  border: 2px solid var(--blue);
+  background: #050510;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: block;
+}
+.cartridge:hover {
+  transform: scale(1.04);
+  border-color: var(--yellow);
+  box-shadow: 0 0 16px rgba(248,208,24,0.3);
+  text-decoration: none;
+}
+.cartridge-banner {
+  padding: 8px 12px;
+  font-family: var(--font-p);
+  font-size: 10px;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cartridge-body {
+  padding: 12px;
+}
+.cartridge-title {
+  font-family: var(--font-v);
+  font-size: 20px;
+  color: var(--text);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.cartridge-authors {
+  font-family: var(--font-v);
+  font-size: 17px;
+  color: var(--gray);
+  margin-bottom: 4px;
+}
+.cartridge-journal {
+  font-family: var(--font-v);
+  font-size: 17px;
+  color: var(--green);
+}
+.read-btn {
+  display: none;
+  font-family: var(--font-p);
+  font-size: 8px;
+  background: var(--yellow);
+  color: #000;
+  padding: 6px 10px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.cartridge:hover .read-btn { display: inline-block; }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+/* ============================================================
+   CV / RPG SECTION
+   ============================================================ */
+.rpg-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: calc(var(--u)*4);
+  align-items: start;
+}
+.character-card {
+  border: 2px solid var(--blue);
+  background: #050510;
+  padding: calc(var(--u)*2);
+  text-align: center;
+}
+.char-card-sprite {
+  display: flex; justify-content: center;
+  margin-bottom: calc(var(--u)*2);
+}
+#cv-sprite-canvas {
+  image-rendering: pixelated;
+  animation: idle-bob 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px var(--green));
+}
+.char-stat-row {
+  font-family: var(--font-v);
+  font-size: 18px;
+  text-align: left;
+  margin: 6px 0;
+  display: flex;
+  gap: 8px;
+}
+.char-stat-label {
+  color: var(--gray);
+  min-width: 80px;
+}
+.char-stat-val { color: var(--green); }
+.xp-bar-wrap {
+  margin: 12px 0;
+  border: 2px solid var(--blue);
+  height: 16px;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+.xp-bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--green), var(--yellow));
+  width: 0%;
+  transition: width 1.5s ease-out;
+}
+.xp-bar-label {
+  font-family: var(--font-p);
+  font-size: 7px;
+  color: var(--gray);
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+.download-btn {
+  font-family: var(--font-p);
+  font-size: 10px;
+  letter-spacing: 1px;
+  background: var(--red);
+  color: var(--text);
+  border: 2px solid var(--salmon);
+  padding: 12px 16px;
+  display: block;
+  width: 100%;
+  margin-top: calc(var(--u)*2);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  animation: pulse-download 2s ease-in-out infinite;
+}
+@keyframes pulse-download {
+  0%,100%{ box-shadow: 0 0 0 2px var(--red); }
+  50%{ box-shadow: 0 0 12px var(--red); }
+}
+.download-btn:hover { text-decoration: none; background: #FF3300; }
 
-	</body>
+.rpg-right {}
+.rpg-section-title {
+  font-family: var(--font-p);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--salmon);
+  margin: calc(var(--u)*3) 0 calc(var(--u)*2);
+  border-bottom: 1px solid var(--salmon);
+  padding-bottom: 4px;
+}
+.skill-unlock {
+  font-family: var(--font-v);
+  font-size: 20px;
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.skill-star { color: var(--yellow); }
+.quest-entry {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+  border-left: 2px solid var(--blue);
+  padding-left: 12px;
+  margin-left: 4px;
+  position: relative;
+}
+.quest-entry::before {
+  content: '✓';
+  position: absolute;
+  left: -12px;
+  background: var(--bg);
+  color: var(--green);
+  font-size: 16px;
+  padding: 0 2px;
+}
+.quest-text { font-family: var(--font-v); font-size: 20px; }
+.quest-period { color: var(--gray); font-size: 17px; }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: calc(var(--u));
+}
+.skill-item {
+  border: 2px solid var(--blue);
+  padding: 8px 6px;
+  text-align: center;
+  font-family: var(--font-v);
+  font-size: 18px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  cursor: default;
+}
+.skill-item:hover {
+  border-color: var(--yellow);
+  box-shadow: 0 0 8px rgba(248,208,24,0.3);
+}
+.skill-icon { font-size: 22px; display: block; }
+.skill-name { color: var(--gray); font-size: 16px; }
+
+.awards-grid {
+  display: flex; flex-wrap: wrap; gap: calc(var(--u)*2);
+}
+.award-badge {
+  border: 2px solid var(--yellow);
+  padding: 8px 12px;
+  font-family: var(--font-v);
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: box-shadow 0.2s;
+  cursor: default;
+}
+.award-badge:hover { box-shadow: 0 0 12px rgba(248,208,24,0.5); }
+.award-icon { font-size: 22px; }
+
+/* ============================================================
+   PROJECTS SECTION
+   ============================================================ */
+.projects-map {
+  background:
+    linear-gradient(rgba(0,88,248,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,88,248,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  border: 2px solid var(--blue);
+  padding: calc(var(--u)*3);
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: calc(var(--u)*3);
+}
+.project-card {
+  border: 2px solid var(--blue);
+  background: rgba(0,0,0,0.85);
+  padding: calc(var(--u)*2);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  position: relative;
+}
+.project-card.focused,
+.project-card:focus {
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 2px var(--yellow);
+}
+.project-card.focused::before {
+  content: '▶';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: var(--yellow);
+  font-size: 14px;
+  animation: blink-cursor 0.7s step-end infinite;
+}
+.project-title {
+  font-family: var(--font-p);
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+.project-desc {
+  font-family: var(--font-v);
+  font-size: 19px;
+  color: var(--gray);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.status-badge {
+  font-family: var(--font-p);
+  font-size: 7px;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.status-active {
+  color: var(--green);
+  border: 1px solid var(--green);
+  animation: blink-cursor 1s step-end infinite;
+}
+.status-completed { color: var(--blue); border: 1px solid var(--blue); }
+.status-hold { color: var(--red); border: 1px solid var(--red); }
+.project-links {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.pixel-btn {
+  font-family: var(--font-p);
+  font-size: 7px;
+  letter-spacing: 1px;
+  padding: 5px 8px;
+  border: 2px solid var(--blue);
+  color: var(--blue);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+  text-decoration: none;
+  display: inline-block;
+}
+.pixel-btn:hover {
+  background: var(--blue);
+  color: #000;
+  text-decoration: none;
+}
+.nav-hint {
+  font-family: var(--font-p);
+  font-size: 7px;
+  color: var(--gray);
+  letter-spacing: 1px;
+  text-align: center;
+  margin-top: calc(var(--u)*2);
+}
+
+/* ============================================================
+   CONTACT TERMINAL
+   ============================================================ */
+.terminal {
+  background: #000;
+  border: 2px solid var(--green);
+  padding: calc(var(--u)*3);
+  font-family: var(--font-v);
+  font-size: 22px;
+  box-shadow: 0 0 20px rgba(0,168,72,0.2), inset 0 0 30px rgba(0,168,72,0.03);
+  max-width: 700px;
+}
+.terminal-line {
+  color: var(--green);
+  line-height: 2;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.t-label { color: var(--gray); min-width: 120px; }
+.t-value { color: var(--green); }
+.t-value a { color: var(--green); text-decoration: none; }
+.t-value a:hover { text-decoration: underline; }
+.term-cursor {
+  display: inline-block;
+  width: 10px; height: 20px;
+  background: var(--green);
+  vertical-align: text-bottom;
+  animation: blink-cursor 0.7s step-end infinite;
+  margin-left: 4px;
+}
+.transmission {
+  margin-top: calc(var(--u)*4);
+  text-align: center;
+  display: none;
+}
+.transmission-text {
+  font-family: var(--font-p);
+  font-size: 10px;
+  color: var(--green);
+  letter-spacing: 2px;
+  animation: pulse-text 1.5s ease-in-out infinite;
+}
+
+/* ============================================================
+   MUSIC TOGGLE
+   ============================================================ */
+#music-hud {
+  position: fixed;
+  bottom: calc(var(--u)*2);
+  right: calc(var(--u)*2);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+#music-toggle {
+  font-family: var(--font-p);
+  font-size: 8px;
+  letter-spacing: 1px;
+  background: #000;
+  border: 2px solid var(--gray);
+  color: var(--gray);
+  padding: 8px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 0.2s, color 0.2s;
+}
+#music-toggle:hover { border-color: var(--yellow); color: var(--yellow); }
+#music-toggle.playing {
+  border-color: var(--green);
+  color: var(--green);
+  box-shadow: 0 0 8px rgba(0,168,72,0.4);
+}
+.speaker-icon { font-size: 14px; }
+.sound-waves {
+  display: none;
+  gap: 2px;
+  align-items: center;
+}
+#music-toggle.playing .sound-waves { display: flex; }
+.wave {
+  width: 3px;
+  background: var(--green);
+  animation: wave-pulse 0.6s ease-in-out infinite;
+}
+.wave:nth-child(1){ height: 6px; animation-delay: 0s; }
+.wave:nth-child(2){ height: 10px; animation-delay: 0.1s; }
+.wave:nth-child(3){ height: 8px; animation-delay: 0.2s; }
+.wave:nth-child(4){ height: 12px; animation-delay: 0.05s; }
+@keyframes wave-pulse {
+  0%,100%{ transform: scaleY(0.5); }
+  50%{ transform: scaleY(1); }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  border-top: 2px solid var(--blue);
+  text-align: center;
+  padding: calc(var(--u)*3);
+  font-family: var(--font-p);
+  font-size: 7px;
+  letter-spacing: 2px;
+  color: var(--gray);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 700px) {
+  nav { padding: 0 calc(var(--u)*2); }
+  .nav-logo { font-size: 7px; padding: 4px 6px; }
+  .nav-links { gap: calc(var(--u)); }
+  .nav-links a { font-size: 6px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .rpg-grid { grid-template-columns: 1fr; }
+  .section-header { font-size: 11px; }
+  section { padding: calc(var(--u)*4) calc(var(--u)*2); }
+  .projects-map { background: none; }
+  .cartridge-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <!-- TODO: Replace [NAME] -->
+  <div class="nav-logo">[ OMAR TARIQ | HOMO SAPIENS ]</div>
+  <ul class="nav-links">
+    <li><a href="#about"    data-section="about">ABOUT</a></li>
+    <li><a href="#research" data-section="research">RESEARCH</a></li>
+    <li><a href="#cv"       data-section="cv">CV</a></li>
+    <li><a href="#projects" data-section="projects">PROJECTS</a></li>
+    <li><a href="#contact"  data-section="contact">CONTACT</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+     SECTION 1 — ABOUT
+     ============================================================ -->
+<section id="about">
+  <h2 class="section-header">ABOUT ME</h2>
+  <div class="about-grid">
+
+    <div class="sprite-wrapper">
+      <canvas id="sprite-canvas" width="80" height="96"></canvas>
+      <div class="lab-decorations">
+        <!-- Flask -->
+        <div style="text-align:center">
+          <svg width="44" height="64" viewBox="0 0 44 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="16" y="0" width="12" height="5" fill="#A8A8A8"/>
+            <rect x="14" y="5" width="16" height="16" fill="none" stroke="#0058F8" stroke-width="2"/>
+            <polygon points="14,21 5,56 39,56 30,21" fill="none" stroke="#0058F8" stroke-width="2"/>
+            <polygon points="14,21 5,56 39,56 30,21" fill="rgba(0,168,72,0.15)"/>
+            <rect x="5" y="56" width="34" height="4" fill="#0058F8"/>
+            <circle r="3" fill="#00A848" opacity="0.8">
+              <animateMotion path="M 22 52 Q 18 40 22 28" dur="1.2s" repeatCount="indefinite" begin="0s"/>
+              <animate attributeName="opacity" values="0;0.9;0" dur="1.2s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="2" fill="#00A848" opacity="0.8">
+              <animateMotion path="M 26 50 Q 30 38 24 26" dur="1.6s" repeatCount="indefinite" begin="0.4s"/>
+              <animate attributeName="opacity" values="0;0.9;0" dur="1.6s" repeatCount="indefinite" begin="0.4s"/>
+            </circle>
+            <circle r="2.5" fill="#0058F8" opacity="0.7">
+              <animateMotion path="M 18 52 Q 15 42 20 30" dur="2s" repeatCount="indefinite" begin="0.8s"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="2s" repeatCount="indefinite" begin="0.8s"/>
+            </circle>
+          </svg>
+        </div>
+        <!-- Microscope -->
+        <div style="text-align:center">
+          <svg width="44" height="64" viewBox="0 0 44 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="18" y="4" width="8" height="4" fill="#A8A8A8"/>
+            <rect x="20" y="8" width="4" height="18" fill="#A8A8A8"/>
+            <rect x="16" y="24" width="12" height="6" fill="#A8A8A8"/>
+            <rect x="18" y="30" width="8" height="12" fill="#808080"/>
+            <ellipse cx="22" cy="44" rx="14" ry="4" fill="#A8A8A8"/>
+            <rect x="10" y="44" width="24" height="4" fill="#808080"/>
+            <circle cx="22" cy="26" r="4" fill="#000">
+              <animate attributeName="fill" values="#000;#00A848;#000" dur="3s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="22" cy="26" r="2" fill="#00A848" opacity="0.6">
+              <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+        <!-- DNA Helix -->
+        <div style="text-align:center">
+          <svg width="36" height="64" viewBox="0 0 36 64" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+            <g style="transform-origin:18px 32px; animation:dna-spin 4s linear infinite">
+              <ellipse cx="18" cy="8" rx="10" ry="4" fill="none" stroke="#F8D018" stroke-width="2"/>
+              <ellipse cx="18" cy="20" rx="10" ry="4" fill="none" stroke="#0058F8" stroke-width="2"/>
+              <ellipse cx="18" cy="32" rx="10" ry="4" fill="none" stroke="#F8D018" stroke-width="2"/>
+              <ellipse cx="18" cy="44" rx="10" ry="4" fill="none" stroke="#0058F8" stroke-width="2"/>
+              <ellipse cx="18" cy="56" rx="10" ry="4" fill="none" stroke="#F8D018" stroke-width="2"/>
+              <line x1="8" y1="8" x2="8" y2="56" stroke="#00A848" stroke-width="2"/>
+              <line x1="28" y1="8" x2="28" y2="56" stroke="#00A848" stroke-width="2"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="typewriter-box">
+        <div id="typewriter-text"></div><span class="cursor" id="typing-cursor">█</span>
+        <!-- TODO: Replace placeholder text below -->
+        <div id="bio-source" style="display:none">HI! I'M OMAR.
+
+I'M A PHD CANDIDATE AT UBC.
+
+I STUDY GENETIC REGULATION BY DEEP MUTATIONAL SCANNING.
+
+MY INTERESTS ARE IN HIGH THROUGHPUT SCREENING, EPISTASIS, AND CELL ENGINEERING.</div>
+        <div class="press-start" id="press-start">▼ PRESS START ▼</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">░░▒▒▓▓████▓▓▒▒░░░░▒▒▓▓████▓▓▒▒░░░░▒▒▓▓████▓▓▒▒░░</div>
+
+<!-- ============================================================
+     SECTION 2 — RESEARCH
+     ============================================================ -->
+<section id="research">
+  <h2 class="section-header">PUBCLIATIONS</h2>
+
+  <div class="cartridge-grid">
+    <!-- TODO: Replace with real publications -->
+    <a class="cartridge" href="https://doi.org/10.1093/bioinformatics/btad328" target="_blank" rel="noopener">
+      <div class="cartridge-banner" style="background:#0058F8; color:#000;">
+        <span>PUBLICATION</span><span>2023</span>
+      </div>
+      <div class="cartridge-body">
+        <div class="cartridge-title">GIL: A PYTHON PACKAGE FOR DESIGNING CUSTOM INDEXING PRIMERS</div>
+        <div class="cartridge-authors"> NICHOLAS MATEYKO, OMAR TARIQ ET AL.</div>
+        <div class="cartridge-journal">BIOINFORMATICS, JUNE 2023, BTAD328</div>
+        <button class="read-btn">► READ</button>
+      </div>
+    </a>
+    <a class="cartridge" href="https://doi.org/10.3389/fncir.2021.768235" target="_blank" rel="noopener">
+      <div class="cartridge-banner" style="background:#00A848; color:#000;">
+        <span>PUBLICATION</span><span>2022</span>
+      </div>
+      <div class="cartridge-body">
+        <div class="cartridge-title">CHANGES IN SENSORIMOTOR CONNECTIVITY TO DI3 INTERNEURONS IN RELATION TO THE POSTNATAL MATURATION OF GRASPING</div>
+        <div class="cartridge-authors">ALEX LALIBERTE, CARL FARAH, KYRA STEINER, OMAR TARIQ AND TUAN BUI.</div>
+        <div class="cartridge-journal">FRONT. NEURAL CIRCUITS, VOL. 15-2021 (2022)</div>
+        <button class="read-btn">► READ</button>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="divider">░░▒▒▓▓████▓▓▒▒░░░░▒▒▓▓████▓▓▒▒░░░░▒▒▓▓████▓▓▒▒░░</div>
+
+<!-- ============================================================
+     SECTION 3 — CV
+     ============================================================ -->
+<section id="cv">
+  <h2 class="section-header">CV</h2>
+  <div class="rpg-grid">
+
+    <!-- Character Card -->
+    <div class="character-card">
+      <div class="char-card-sprite">
+        <canvas id="cv-sprite-canvas" width="64" height="80"></canvas>
+      </div>
+      <!-- TODO: Replace placeholders -->
+      <div class="char-stat-row"><span class="char-stat-label">NAME</span><span class="char-stat-val">Omar Tariq</span></div>
+      <div class="char-stat-row"><span class="char-stat-label">CLASS</span><span class="char-stat-val">PhD Candidate</span></div>
+      <div class="char-stat-row"><span class="char-stat-label">GUILD</span><span class="char-stat-val">University of British Columbia</span></div>
+
+      <div style="margin-top:12px">
+        <div class="xp-bar-label">XP BAR</div>
+        <div class="xp-bar-wrap"><div class="xp-bar-fill" id="char-xp" data-pct="82"></div></div>
+        <div class="xp-bar-label" style="text-align:right;margin-top:2px">82% TO NEXT LEVEL</div>
+      </div>
+
+      <!-- TODO: Link to real CV PDF -->
+      <a href="#" class="download-btn" download>▼ DOWNLOAD CV</a>
+    </div>
+
+    <!-- Stats Panel -->
+    <div class="rpg-right">
+      <div class="rpg-section-title">✦ EDUCATION</div>
+      <!-- TODO: Replace with real education -->
+      <div class="skill-unlock"><span class="skill-star">⭐</span> PH.D. IN BIOMEDICAL ENGINEERING — UNIVERSITY OF BRITISH COLUMBIA (2022-  )</div>
+      <div class="skill-unlock"><span class="skill-star">⭐</span> M.ASC. IN BIOMEDICAL ENGINEERING — UNIVERSITY OF BRITISH COLUMBIA (2020-2022) <br> NO DEGREE CONFERRED</div>
+      <div class="skill-unlock"><span class="skill-star">⭐</span> B.SC. IN BIOMEDICAL SCIENCE — UNIVERSITY OF OTTAWA (2016-2020)</div>
+
+      <div class="rpg-section-title">✦ EXPERIENCE</div>
+      <!-- TODO: Replace with real experience -->
+      <div class="quest-entry">
+        <div>
+          <div class="quest-text">PHD CANDIDATE · DE BOER LAB | UBC SBME</div>
+          <div class="quest-period">2020 – Present</div>
+        </div>
+      </div>
+      <div class="quest-entry">
+        <div>
+          <div class="quest-text"> UNDERGRADUATE RESEARCHER · BUI LAB | UNIVERSITY OF OTTAWA</div>
+          <div class="quest-period">2019 – 2020</div>
+        </div>
+      </div>
+      <div class="quest-entry">
+        <div>
+          <div class="quest-text">UNDERGRADUATE RESEARCHER · LEWIS LAB | UNIVERSITY OF OTTAWA</div>
+          <div class="quest-period">2018</div>
+        </div>
+      </div>
+
+      <div class="rpg-section-title">✦ SKILLS</div>
+      <!-- TODO: Replace with real skills -->
+      <div class="skills-grid">
+        <div class="skill-item"><span class="skill-icon">🧬</span><span class="skill-name">MOLECULAR CLONING</span></div>
+        <div class="skill-item"><span class="skill-icon">🍞</span><span class="skill-name">YEAST CULTURE</span></div>
+        <div class="skill-item"><span class="skill-icon">🧫</span><span class="skill-name">MAMMALIAN CELL CULTURE</span></div>
+        <div class="skill-item"><span class="skill-icon">🎲</span><span class="skill-name">MPRAs</span></div>
+        <div class="skill-item"><span class="skill-icon">🤖</span><span class="skill-name">MACHINE LEARNING</span></div>
+        <div class="skill-item"><span class="skill-icon">📈</span><span class="skill-name">FLOW CYTOMETRY</span></div>
+        <div class="skill-item"><span class="skill-icon">🐍</span><span class="skill-name">PYTHON / R / BASH</span></div>
+      </div>
+
+      <div class="rpg-section-title">✦ AWARDS</div>
+      <!-- TODO: Replace with real awards -->
+      <div class="awards-grid">
+        <div class="award-badge"><span class="award-icon">🏆</span> CANCER RESEARCH SOCIETY DOCTORAL AWARD (2024-2026) | $70,000</div>
+        <div class="award-badge"><span class="award-icon">🥇</span> SBME SYMPOSIUM POSTER AWARD (2022)</div>
+        <div class="award-badge"><span class="award-icon">🎖️</span> 3RD PLACE PHARMAHACKS HACKATHON (2022)</div>
+        <div class="award-badge"><span class="award-icon">🎖️</span> SBME 3 MINUTE THESIS AWARD (2022)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">░░▒▒▓▓████▓▓▒▒░░░░▒▒▓▓████▓▓▒▒░░░░▒▒▓▓████▓▓▒▒░░</div>
+
+<!-- ============================================================
+     SECTION 4 — PROJECTS
+     ============================================================ -->
+<section id="projects">
+  <h2 class="section-header">PROJECTS</h2>
+  <div class="projects-map">
+    <div class="projects-grid" id="projects-grid">
+      <!-- TODO: Replace with real projects -->
+      <div class="project-card" tabindex="0">
+        <div class="project-title">[PROJECT ALPHA]: HIGH-THROUGHPUT PROFILING OF TF MISSENSE VARIANTS</div>
+        <span class="status-badge status-active">[ACTIVE]</span>
+        <div class="project-desc">UTILIZING MPRAS TO STUDY THE IMPACT OF MISSENSE MUTATIONS ON DNA-BINDING BY TRANSCRIPTION FACTORS</div>
+      </div>
+      <div class="project-card" tabindex="0">
+        <div class="project-title">[PROJECT BETA]: GIL </div>
+        <span class="status-badge status-completed">[COMPLETED]</span>
+        <div class="project-desc">AN EASIER AND BETTER WAY TO DESIGN INDEXING PRIMERS FOR NGS.</div>
+        <div class="project-links">
+          <a class="pixel-btn" href="https://doi.org/10.1093/bioinformatics/btad328" target="_blank">[PAPER]</a>
+          <a class="pixel-btn" href="https://github.com/de-Boer-Lab/GIL" target="_blank">[GITHUB]</a>
+          <a class="pixel-btn" href="https://dbl-gil.streamlit.app/" target="_blank">[STREAMLIT]</a>
+        </div>
+      </div>
+      <div class="project-card" tabindex="0">
+        <div class="project-title">[PROJECT GAMMA]: PSEUDO-BULK-SEQ</div>
+        <span class="status-badge status-hold">[ON HOLD]</span>
+        <div class="project-desc">DEVELOPING METHODS FOR SCALING UP POOLD GENOMIC SCREENS BYPASSING SINGLE CELL SEQUENCING.</div>
+      </div>
+      <div class="project-card" tabindex="0">
+        <div class="project-title">[PROJECT DELTA]: CLONAL LENTIVIRUS LIBRARIES</div>
+        <span class="status-badge status-active">[ACTIVE]</span>
+        <div class="project-desc">DEVELOPING METHODS FOR ELIMINATING BARCODE SWAPPING IN POOLED LENTIVIRAL TITERS.</div>
+      </div>
+    </div>
+    <div class="nav-hint">USE ← → ↑ ↓ ARROW KEYS TO NAVIGATE</div>
+  </div>
+</section>
+
+<div class="divider">░░▒▒▓▓████▓▓▒▒░░░░▒▒▓▓████▓▓▒▒░░░░▒▒▓▓████▓▓▒▒░░</div>
+
+<!-- ============================================================
+     SECTION 5 — CONTACT
+     ============================================================ -->
+<section id="contact">
+  <h2 class="section-header">CONTACT</h2>
+  <div class="terminal">
+    <div id="terminal-lines"></div>
+    <span class="term-cursor" id="term-cursor"></span>
+  </div>
+  <div class="transmission" id="transmission">
+    <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <rect x="24" y="36" width="16" height="20" fill="#00A848"/>
+      <rect x="28" y="28" width="8" height="8" fill="#A8A8A8"/>
+      <line x1="32" y1="4" x2="20" y2="28" stroke="#00A848" stroke-width="2"/>
+      <line x1="32" y1="4" x2="44" y2="28" stroke="#00A848" stroke-width="2"/>
+      <circle cx="32" cy="4" r="3" fill="#F8D018">
+        <animate attributeName="r" values="3;6;3" dur="1s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+      </circle>
+      <ellipse cx="32" cy="4" rx="16" ry="8" fill="none" stroke="#00A848" stroke-width="1.5" opacity="0.6">
+        <animate attributeName="rx" values="16;24;16" dur="1.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.6;0;0.6" dur="1.5s" repeatCount="indefinite"/>
+      </ellipse>
+    </svg>
+    <div class="transmission-text">✦ TRANSMISSION COMPLETE ✦</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <!-- TODO: Replace [NAME] and [YEAR] -->
+  © 2026 OMAR TARIQ · MADE WITH ♥ AND PIPETTES
+</footer>
+
+<!-- ============================================================
+     MUSIC HUD
+     ============================================================ -->
+<div id="music-hud">
+  <button id="music-toggle" aria-label="Toggle music">
+    <span class="speaker-icon">♪</span>
+    <span id="music-label">ON</span>
+    <div class="sound-waves">
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+  </button>
+</div>
+
+<!-- ============================================================
+     KEYFRAME FOR DNA SPIN (inline since it uses transform)
+     ============================================================ -->
+<style>
+@keyframes dna-spin {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+</style>
+
+<script>
+/* ============================================================
+   PIXEL ART SPRITE GENERATOR
+   ============================================================ */
+const COLORS = {
+  0: null,
+  1: '#F8C878', // skin
+  2: '#3A1A08', // dark hair
+  3: '#FCFCFC', // white coat
+  4: '#0058F8', // blue shirt / pants
+  5: '#D82800', // red
+  6: '#A8A8A8', // gray
+  7: '#201008', // dark brown / outline
+  8: '#F8D018', // yellow
+  9: '#00A848', // green
+  A: '#8060A8', // purple
+};
+
+// 16x20 scientist sprite (columns x rows)
+const SPRITE_DATA = [
+  [0,0,0,0,2,2,2,2,2,2,2,2,0,0,0,0],
+  [0,0,0,2,2,2,2,2,2,2,2,2,2,0,0,0],
+  [0,0,0,2,1,1,1,1,1,1,1,1,2,0,0,0],
+  [0,0,2,1,1,6,1,1,1,1,6,1,1,2,0,0],
+  [0,0,2,1,1,7,1,1,1,1,7,1,1,2,0,0],
+  [0,0,2,1,1,1,1,1,1,1,1,1,1,2,0,0],
+  [0,0,2,1,1,1,8,8,8,8,1,1,1,2,0,0],
+  [0,0,0,2,1,1,1,1,1,1,1,1,2,0,0,0],
+  [0,0,0,3,3,3,3,3,3,3,3,3,3,0,0,0],
+  [0,3,3,3,3,4,4,4,4,4,4,3,3,3,3,0],
+  [3,3,3,1,3,4,4,4,4,4,4,3,1,3,3,3],
+  [3,3,3,1,3,3,3,3,3,3,3,3,1,3,3,3],
+  [0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0],
+  [0,0,3,3,3,3,3,3,3,3,3,3,3,3,0,0],
+  [0,0,0,0,4,4,0,0,0,0,4,4,0,0,0,0],
+  [0,0,0,0,4,4,0,0,0,0,4,4,0,0,0,0],
+  [0,0,0,0,4,4,0,0,0,0,4,4,0,0,0,0],
+  [0,0,0,0,7,7,0,0,0,0,7,7,0,0,0,0],
+  [0,0,0,0,7,7,0,0,0,0,7,7,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+];
+
+// Same sprite with eyes closed (for blink)
+const SPRITE_BLINK = JSON.parse(JSON.stringify(SPRITE_DATA));
+SPRITE_BLINK[4] = [0,0,2,1,1,6,6,1,1,6,6,1,1,2,0,0];
+
+function drawPixelSprite(canvas, data, pixSize) {
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  data.forEach((row, y) => {
+    row.forEach((px, x) => {
+      const c = COLORS[px];
+      if (c) {
+        ctx.fillStyle = c;
+        ctx.fillRect(x * pixSize, y * pixSize, pixSize, pixSize);
+      }
+    });
+  });
+}
+
+function initSprite(canvasId, pixSize) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  canvas.width  = 16 * pixSize;
+  canvas.height = 20 * pixSize;
+  drawPixelSprite(canvas, SPRITE_DATA, pixSize);
+
+  // Blink animation
+  let blinking = false;
+  function scheduleBlink() {
+    const delay = 2500 + Math.random() * 2000;
+    setTimeout(() => {
+      drawPixelSprite(canvas, SPRITE_BLINK, pixSize);
+      blinking = true;
+      setTimeout(() => {
+        drawPixelSprite(canvas, SPRITE_DATA, pixSize);
+        blinking = false;
+        scheduleBlink();
+      }, 120);
+    }, delay);
+  }
+  scheduleBlink();
+}
+
+// Init both sprites
+initSprite('sprite-canvas', 5);
+initSprite('cv-sprite-canvas', 4);
+
+/* ============================================================
+   TYPEWRITER EFFECT
+   ============================================================ */
+function runTypewriter() {
+  const source  = document.getElementById('bio-source').textContent;
+  const target  = document.getElementById('typewriter-text');
+  const cursor  = document.getElementById('typing-cursor');
+  const psBtn   = document.getElementById('press-start');
+  let i = 0;
+  const speed = 38;
+
+  function type() {
+    if (i < source.length) {
+      target.textContent += source[i];
+      i++;
+      setTimeout(type, speed + (source[i - 1] === '\n' ? 200 : 0));
+    } else {
+      cursor.style.display = 'none';
+      psBtn.style.display = 'block';
+    }
+  }
+  setTimeout(type, 800);
+}
+runTypewriter();
+
+/* ============================================================
+   SCROLL PROGRESS + NAV ACTIVE
+   ============================================================ */
+const progressBar = document.getElementById('progress-bar');
+const sections    = document.querySelectorAll('section[id]');
+const navLinks    = document.querySelectorAll('.nav-links a[data-section]');
+
+window.addEventListener('scroll', () => {
+  const scrollTop  = window.scrollY;
+  const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
+  const progress   = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progressBar.style.width = progress + '%';
+
+  // Active nav link
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (scrollTop >= top) current = sec.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.dataset.section === current);
+  });
+});
+
+/* ============================================================
+   INTERSECTION OBSERVER — SECTION REVEAL + XP BARS
+   ============================================================ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Animate XP bars inside this section
+      entry.target.querySelectorAll('.xp-bar-fill[data-pct]').forEach(bar => {
+        setTimeout(() => {
+          bar.style.width = bar.dataset.pct + '%';
+        }, 300);
+      });
+      // Trigger terminal if contact section
+      if (entry.target.id === 'contact' && !terminalStarted) {
+        terminalStarted = true;
+        startTerminal();
+      }
+      if (entry.target.id === 'cv') {
+        startXpBars();
+      }
+    }
+  });
+}, { threshold: 0.1 });
+
+sections.forEach(s => observer.observe(s));
+
+/* ============================================================
+   XP BARS
+   ============================================================ */
+function startXpBars() {
+  document.querySelectorAll('.xp-bar-fill').forEach(bar => {
+    const pct = bar.dataset.pct || 80;
+    setTimeout(() => { bar.style.width = pct + '%'; }, 400);
+  });
+}
+
+/* ============================================================
+   TERMINAL CONTACT SECTION
+   ============================================================ */
+let terminalStarted = false;
+
+const TERMINAL_LINES = [
+  { label: '> INITIATING CONTACT PROTOCOL...', value: '', delay: 0 },
+  { label: '> EMAIL:', value: '<a href="mailto:omar.tariq@ubc.ca">omar.tariq@ubc.ca</a>', delay: 320 },
+  { label: '> GITHUB:', value: '<a href="https://github.com/OmartheOrganism" target="_blank">@OmartheOrganism</a>', delay: 640 },
+  { label: '> TWITTER:', value: '<a href="https://twitter.com/OmarTariqBio" target="_blank">OmarTariqBio</a>', delay: 960 },
+  { label: '> LAB:', value: '<a href="https://deboer.bme.ubc.ca/" target="_blank">de Boer Lab</a>', delay: 1280 },
+  { label: '> ORCID:', value: '<a href="https://orcid.org/0000-0002-0085-6533" target="_blank">[0000-0002-0085-653]</a>', delay: 1600 },
+];
+
+function startTerminal() {
+  const container = document.getElementById('terminal-lines');
+  const cursor    = document.getElementById('term-cursor');
+
+  TERMINAL_LINES.forEach((lineData, i) => {
+    setTimeout(() => {
+      const div = document.createElement('div');
+      div.className = 'terminal-line';
+      if (lineData.value) {
+        div.innerHTML = `<span class="t-label">${lineData.label}</span><span class="t-value">${lineData.value}</span>`;
+      } else {
+        div.innerHTML = `<span style="color:var(--green)">${lineData.label}</span>`;
+      }
+      container.appendChild(div);
+    }, lineData.delay);
+  });
+
+  setTimeout(() => {
+    cursor.style.display = 'none';
+    document.getElementById('transmission').style.display = 'block';
+  }, 2200);
+}
+
+/* ============================================================
+   ARROW KEY PROJECT NAVIGATION
+   ============================================================ */
+const projGrid  = document.getElementById('projects-grid');
+const projCards = () => Array.from(projGrid.querySelectorAll('.project-card'));
+let focusedIdx  = -1;
+
+function focusProject(idx) {
+  const cards = projCards();
+  if (idx < 0 || idx >= cards.length) return;
+  cards.forEach(c => c.classList.remove('focused'));
+  cards[idx].classList.add('focused');
+  cards[idx].scrollIntoView({ block: 'nearest' });
+  focusedIdx = idx;
+}
+
+document.addEventListener('keydown', (e) => {
+  const pSection = document.getElementById('projects');
+  const rect = pSection.getBoundingClientRect();
+  const inView = rect.top < window.innerHeight && rect.bottom > 0;
+  if (!inView) return;
+
+  const cols = window.innerWidth >= 700 ? 2 : 1;
+  const cards = projCards();
+  if (!cards.length) return;
+
+  if (focusedIdx === -1) { focusProject(0); return; }
+  let next = focusedIdx;
+  if (e.key === 'ArrowRight') next = Math.min(focusedIdx + 1, cards.length - 1);
+  if (e.key === 'ArrowLeft')  next = Math.max(focusedIdx - 1, 0);
+  if (e.key === 'ArrowDown')  next = Math.min(focusedIdx + cols, cards.length - 1);
+  if (e.key === 'ArrowUp')    next = Math.max(focusedIdx - cols, 0);
+
+  if (next !== focusedIdx) {
+    e.preventDefault();
+    focusProject(next);
+  }
+});
+
+/* ============================================================
+   8-BIT MUSIC — WEB AUDIO API
+   ============================================================ */
+let audioCtx = null;
+let musicPlaying = false;
+let musicTimeout = null;
+
+// C major melody (2 voices: melody + bass arpeggio)
+const MELODY = [
+  523.25, 659.25, 783.99, 659.25,
+  523.25, 440.00, 523.25, 587.33,
+  659.25, 783.99, 987.77, 783.99,
+  659.25, 587.33, 523.25, 440.00,
+  392.00, 523.25, 659.25, 523.25,
+  392.00, 329.63, 392.00, 440.00,
+  523.25, 659.25, 783.99, 659.25,
+  523.25, 440.00, 392.00, 523.25,
+];
+
+const BASS = [
+  130.81, 130.81, 164.81, 164.81,
+  130.81, 130.81, 164.81, 196.00,
+  130.81, 130.81, 164.81, 164.81,
+  130.81, 130.81, 130.81, 130.81,
+  98.00,  98.00,  130.81, 130.81,
+  98.00,  98.00,  130.81, 130.81,
+  130.81, 130.81, 164.81, 164.81,
+  130.81, 98.00,  98.00,  130.81,
+];
+
+let noteIdx = 0;
+let musicInterval = null;
+
+function getAudioCtx() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  return audioCtx;
+}
+
+function playChipNote(freq, type, dur, vol, startTime) {
+  const ctx  = getAudioCtx();
+  const osc  = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.type = type;
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(vol, startTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, startTime + dur);
+  osc.start(startTime);
+  osc.stop(startTime + dur + 0.01);
+}
+
+function startMusic() {
+  const ctx   = getAudioCtx();
+  const BPM   = 140;
+  const beat  = 60 / BPM / 2; // 8th notes
+  let step    = noteIdx;
+
+  function tick() {
+    const t = ctx.currentTime;
+    const m = MELODY[step % MELODY.length];
+    const b = BASS[step % BASS.length];
+    playChipNote(m, 'square',   beat * 0.7, 0.07, t);
+    playChipNote(b, 'triangle', beat * 0.9, 0.1,  t);
+    // Occasional harmony
+    if (step % 4 === 2) {
+      playChipNote(m * 1.5, 'square', beat * 0.5, 0.03, t);
+    }
+    step++;
+    noteIdx = step;
+    musicInterval = setTimeout(tick, beat * 1000);
+  }
+  tick();
+}
+
+function stopMusic() {
+  if (musicInterval) {
+    clearTimeout(musicInterval);
+    musicInterval = null;
+  }
+}
+
+document.getElementById('music-toggle').addEventListener('click', () => {
+  const btn   = document.getElementById('music-toggle');
+  const label = document.getElementById('music-label');
+  musicPlaying = !musicPlaying;
+  if (musicPlaying) {
+    startMusic();
+    btn.classList.add('playing');
+    label.textContent = 'OFF';
+    btn.querySelector('.speaker-icon').textContent = '♫';
+  } else {
+    stopMusic();
+    btn.classList.remove('playing');
+    label.textContent = 'ON';
+    btn.querySelector('.speaker-icon').textContent = '♪';
+  }
+});
+
+/* ============================================================
+   SMOOTH SCROLL NAV
+   ============================================================ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+/* ============================================================
+   INITIAL SECTION VISIBILITY
+   ============================================================ */
+// Make #about visible immediately on load
+document.getElementById('about').classList.add('visible');
+</script>
+
+</body>
 </html>

@@ -1,1 +1,1 @@
-Hi! Visit [OmartheOrganism.github.io](OmartheOrganism.github.io) to see my website.
+Hi! Please visit omartheorganism.github.io to visit my website!
